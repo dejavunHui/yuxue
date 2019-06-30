@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/login_bk"
+            >
+
+
+            <EditText
+                android:id="@+id/rg_name_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="240dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:hint="用户名"
+                android:textSize="25sp"
+                android:textColor="@color/cpb_white"
+                android:textColorHint="@color/cpb_white"
+                android:background="@drawable/edit_bound_bg"
+                />
+            <EditText
+                android:id="@+id/rg_email_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:hint="邮箱"
+                android:textColorHint="@color/cpb_white"
+                android:inputType="textEmailAddress"
+                android:textSize="25dp"
+                android:textColor="@color/cpb_white"
+                android:background="@drawable/edit_bound_bg"
+                android:layout_below="@id/rg_name_et"
+                />
+
+            <EditText
+                android:id="@+id/rg_password_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rg_email_et"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:hint="密码"
+                android:textColorHint="@color/cpb_white"
+                android:inputType="textPassword"
+                android:textSize="25dp"
+                android:background="@drawable/edit_bound_bg"
+                />
+
+            <EditText
+                android:id="@+id/rg_age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="150dp"
+                android:layout_below="@id/rg_password_et"
+                android:inputType="numberDecimal"
+                android:hint="年龄"
+                android:textSize="25sp"
+                android:textColor="@color/cpb_white"
+                android:textColorHint="@color/cpb_white"
+                android:background="@drawable/edit_bound_bg"
+                />
+
+
+            <RadioGroup
+                android:id="@+id/gender_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/rg_age"
+                android:gravity="right"
+                android:layout_alignRight="@id/rg_password_et"
+                android:layout_alignLeft="@id/rg_password_et"
+                >
+
+                <RadioButton
+                    android:id="@+id/male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="男"
+                    android:textSize="30sp"
+                    android:textColor="@color/cpb_white"
+                    />
+                <RadioButton
+                    android:id="@+id/female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="女"
+                    android:textSize="30sp"
+                    android:textColor="@color/cpb_white"
+                    />
+
+            </RadioGroup>
+
+
+
+
+            <com.dd.processbutton.iml.ActionProcessButton
+                android:id="@+id/register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_gravity="center_horizontal"
+                android:text="完成"
+                app:pb_colorNormal="@color/cpb_grey"
+                app:pb_colorPressed="@color/colorPrimaryDark"
+                app:pb_colorComplete="@color/cpb_blue"
+                app:pb_textError="注册失败"
+                app:pb_textComplete="注册成功"
+                app:pb_textProgress="请稍等"
+                app:pb_colorError="@color/red_error"
+                android:minWidth="100dp"
+                android:alpha="0011"
+                android:layout_below="@id/gender_select"
+                android:layout_centerHorizontal="true"
+                />
+
+
+            <TextView
+                android:id="@+id/rg_gotologin_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="已有帐号，去登录"
+                android:textSize="20sp"
+                android:textColor="@color/cpb_white"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="20dp"
+
+                />
+
+
+        </RelativeLayout>
+
+
+
+
+
+
+</FrameLayout>

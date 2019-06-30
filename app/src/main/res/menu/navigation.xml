@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/wealth"
+        android:title="天气"
+        fragment="com.example.androidmvp.mvp.wealth.fragment.WealthMainFragment"
+        android:icon="@mipmap/ic_launcher_round"
+        icon2="@mipmap/ic_launcher_round"
+        shiftedColor="#ffffff"
+        ></item>
+    <item
+        android:id="@+id/show"
+        android:title="晒一晒"
+        fragment="com.example.androidmvp.mvp.show.fragment.ShowFragment"
+        android:icon="@mipmap/ic_launcher_round"
+        icon2="@mipmap/ic_launcher_round"
+        shiftedColor="#ffffff"
+        ></item>
+    <item
+        android:id="@+id/find"
+        android:title="发现"
+        fragment="com.example.androidmvp.mvp.find.fragment.FindFragment"
+        android:icon="@mipmap/ic_launcher_round"
+        icon2="@mipmap/ic_launcher_round"
+        shiftedColor="#ffffff"
+        ></item>
+
+</menu>

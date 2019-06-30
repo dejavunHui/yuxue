@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:background="@color/theme_700"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/show_head_user_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/login_bk"
+            android:layout_marginTop="10dp"
+            android:padding="1dp"
+            />
+
+        <TextView
+            android:id="@+id/show_head_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="肖号风吃屎"
+            android:textSize="30dp"
+            android:textColor="@color/blue_normal"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            />
+
+        <Button
+            android:id="@+id/fashuoshuo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/ic_edit"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            />
+
+    </RelativeLayout>
+
+</FrameLayout>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/lock_week_wealth"
+    >
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/lock_week_day_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="太原"
+            android:textSize="30sp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            />
+
+        <include layout="@layout/fragment_time_fagment"
+            android:id="@+id/time_layout"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_below="@id/lock_week_day_city"
+            android:layout_marginTop="5dp"
+            />
+
+
+        <View
+            android:id="@+id/spin_line1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#101025"
+            android:minHeight="1dp"
+            android:layout_below="@id/time_layout"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="40dp"
+            />
+
+        <TextView
+            android:id="@+id/lock_week_dongzhu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="洞烛先机"
+            android:textSize="20sp"
+            android:layout_above="@id/spin_line1"
+            android:layout_alignLeft="@id/spin_line1"
+            android:layout_alignBottom="@id/spin_line1"
+            />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/week_wealth"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/spin_line1"
+            android:layout_alignLeft="@id/spin_line1"
+            android:layout_alignRight="@id/spin_line1"
+            android:layout_above="@id/lock_week_peom_1"
+            android:layout_marginBottom="10dp"
+            >
+
+        </android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/lock_week_peom_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="江湖夜雨十年灯"
+            android:textSize="30sp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignLeft="@id/spin_line1"
+            android:layout_alignRight="@id/spin_line1"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="25dp"
+            />
+
+
+
+        <TextView
+            android:id="@+id/lock_week_peom_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="桃李春风一杯酒"
+            android:textSize="30sp"
+            android:layout_above="@id/lock_week_peom_2"
+            android:layout_alignLeft="@id/lock_week_peom_2"
+            android:layout_alignRight="@id/lock_week_peom_2"
+            android:gravity="center_horizontal"
+            />
+
+
+    </RelativeLayout>
+
+</FrameLayout>

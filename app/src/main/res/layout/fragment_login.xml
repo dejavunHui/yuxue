@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".mvp.login.activity.DoActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/login_bk">
+
+        <EditText
+            android:id="@+id/username"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="请输入用户名："
+            android:textColorHint="#ffffff"
+            android:textSize="20sp"
+            android:background="@drawable/edit_bound_bg"
+            android:layout_marginTop="240sp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="70dp"
+            android:minHeight="50dp"
+
+            />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/username"
+            android:inputType="textPassword"
+            android:hint="密码："
+            android:textColorHint="#ffffff"
+            android:textSize="20sp"
+            android:background="@drawable/edit_bound_bg"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="70dp"
+            android:minHeight="50dp"
+            />
+
+        <TextView
+            android:id="@+id/remeberpasswordtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/password"
+            android:text="记住密码"
+            android:textColor="#ffffff"
+            android:layout_alignRight="@id/password"
+            android:minHeight="40dp"
+            android:gravity="center_vertical"
+            />
+
+
+        <CheckBox
+            android:id="@+id/remeberpassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/password"
+            android:background="@null"
+            android:layout_toLeftOf="@+id/remeberpasswordtext"
+            />
+
+        <com.dd.processbutton.iml.ActionProcessButton
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/remeberpassword"
+            android:layout_centerHorizontal="true"
+            android:alpha="0.5"
+            android:minWidth="140dp"
+            android:text="登录"
+            android:textColor="#ffff"
+            android:textSize="20sp"
+            app:pb_colorNormal="#dedede"
+            app:pb_colorPressed="@color/thumbColor"
+            app:pb_textComplete="验证完成"
+            app:pb_textError="验证失败"
+            app:pb_textProgress="等待验证" />
+
+        <TextView
+            android:id="@+id/login_noid_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="没有账户，去注册"
+            android:textColor="@color/cpb_blue_dark"
+            android:textSize="15sp"
+            android:layout_marginBottom="10dp"
+            />
+
+
+
+
+    </RelativeLayout>
+
+
+</FrameLayout>

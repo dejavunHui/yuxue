@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/remark_from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="消耗分"
+            android:textColor="@color/blue_pressed"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/dao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  回复  "
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/remark_to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="大傻吊： "
+            android:textColor="@color/blue_pressed"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/remark_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="消耗分大傻比"
+            android:textColor="#000000"
+            android:textSize="25dp" />
+
+    </LinearLayout>
+
+    <com.jaeger.ninegridimageview.NineGridImageView
+        android:id="@+id/remark_images"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </com.jaeger.ninegridimageview.NineGridImageView>
+
+</LinearLayout>

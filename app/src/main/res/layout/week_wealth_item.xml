@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    >
+
+    <TextView
+        android:id="@+id/week"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:text="星期一"
+        android:padding="5dp"
+        android:layout_alignParentLeft="true"
+        />
+    <ImageView
+        android:id="@+id/wealt_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="30dp"
+        android:minHeight="30dp"
+        android:padding="5dp"
+        android:layout_toRightOf="@id/week"
+        android:layout_marginLeft="50dp"
+        android:layout_centerVertical="true"
+        />
+
+    <TextView
+        android:id="@+id/tempture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="13~20度"
+        android:textSize="25dp"
+        android:padding="5dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        />
+
+    <TextView
+        android:id="@+id/wealth_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="小雨"
+        android:textSize="25dp"
+        android:padding="5dp"
+        android:gravity="center"
+        android:layout_toLeftOf="@id/tempture"
+        />
+
+</RelativeLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".mvp.wealth.fragment.WealthMainFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.dev.sacot41.scviewpager.SCViewPager
+            android:id="@+id/wealth_viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.dev.sacot41.scviewpager.SCViewPager>
+
+        <com.dev.sacot41.scviewpager.DotsView
+            android:id="@+id/wealth_dotsview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            ></com.dev.sacot41.scviewpager.DotsView>
+
+    </RelativeLayout>
+
+</FrameLayout>

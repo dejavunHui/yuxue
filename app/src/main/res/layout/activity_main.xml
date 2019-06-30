@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".mvp.MainActivity">
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottombar"
+        ></FrameLayout>
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpage_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottombar"
+        ></android.support.v4.view.ViewPager>
+
+    <com.wakehao.bar.BottomNavigationBar
+        android:id="@+id/bottombar"
+        android:background="@null"
+        app:switchMode="shift"
+        app:isSlide="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/navigation"
+        app:selectedColor="#000000"
+        app:unSelectedColor="@color/theme_700"
+        android:layout_alignParentBottom="true"
+        app:viewpagerId="@id/viewpage_container"
+        app:fragmentContainerId="@id/fragment_container"
+        >
+
+
+
+    </com.wakehao.bar.BottomNavigationBar>
+
+</RelativeLayout>

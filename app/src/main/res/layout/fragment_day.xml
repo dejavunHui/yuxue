@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lock_day_wealth"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/day_swiperefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/day_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+
+
+            <TextView
+                android:id="@+id/lock_day_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="太原"
+                android:textSize="30sp" />
+
+            <include
+                layout="@layout/fragment_time_fagment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lock_day_city" />
+
+
+            <TextView
+                android:id="@+id/lock_day_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/time"
+                android:layout_marginLeft="50dp"
+                android:text="晨时"
+                android:textSize="20sp" />
+
+
+            <TextView
+                android:id="@+id/lock_day_time_describe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lock_day_time"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:text="晨光熹微"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/lock_peom_first"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lock_day_time_describe"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="50dp"
+                android:ems="1"
+                android:text="晚来天欲雪"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/lock_peom_last"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lock_day_time_describe"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="90dp"
+                android:ems="1"
+                android:text="能饮一杯无"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/lock_temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/lock_day_time_describe"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="120dp"
+                android:text="0°"
+                android:textSize="50sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/lock_wealth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/lock_temperature"
+                android:layout_marginLeft="30dp"
+                android:layout_toRightOf="@id/lock_temperature"
+                android:gravity="center_horizontal"
+                android:minWidth="80dp"
+                android:text="小雪"
+                android:textSize="50sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/lock_day_or_night"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/lock_temperature"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="30dp"
+                android:ems="1"
+                android:text="今日"
+                android:textSize="30sp" />
+
+
+            <TextView
+                android:id="@+id/lock_temperature_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lock_wealth_info"
+                android:layout_alignLeft="@id/lock_wealth"
+                android:layout_alignRight="@id/lock_wealth"
+                android:gravity="center_horizontal"
+                android:text="-2 ~ 5度"
+                android:textSize="15sp" />
+            <TextView
+                android:id="@+id/lock_temperature_info_high"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lock_temperature_info"
+                android:layout_alignLeft="@id/lock_wealth"
+                android:layout_alignRight="@id/lock_wealth"
+                android:gravity="center_horizontal"
+                android:text="-2 ~ 5度"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/lock_wealth_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/lock_wealth"
+                android:layout_alignTop="@id/lock_day_or_night"
+                android:layout_alignRight="@id/lock_wealth"
+                android:layout_toRightOf="@id/lock_day_or_night"
+                android:gravity="center_horizontal"
+                android:text="小雪"
+                android:textSize="20sp" />
+
+
+            <TextView
+                android:id="@+id/lock_wind_direct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/lock_wealth_info"
+                android:layout_alignParentEnd="true"
+                android:layout_toRightOf="@id/lock_wealth_info"
+                android:gravity="center_horizontal"
+                android:text="风向东南"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/lock_wind_speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lock_wind_direct"
+                android:layout_alignLeft="@id/lock_wind_direct"
+                android:layout_alignParentEnd="true"
+                android:gravity="center_horizontal"
+                android:text="风力2级"
+                android:textSize="20sp" />
+
+
+        </RelativeLayout>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+</FrameLayout>
