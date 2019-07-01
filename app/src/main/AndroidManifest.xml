@@ -20,10 +20,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon, android:label, android:theme">
+        <activity android:name=".mvp.residemenu.activity.UserInfoActivity"></activity>
+
         <service
             android:name=".mvp.wealth.service.AutoUpdateService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
 
         <activity android:name=".mvp.login.activity.DoActivity">
             <intent-filter>
@@ -32,13 +34,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".data.test.TestActivity">
-
-        </activity>
-        <activity android:name=".mvp.show.activity.CreateShowPageActivity">
-
-        </activity>
-        <activity android:name=".mvp.show.activity.CreateRemarkActivity"/>
+        <activity android:name=".data.test.TestActivity"></activity>
+        <activity android:name=".mvp.show.activity.CreateShowPageActivity"></activity>
+        <activity android:name=".mvp.show.activity.CreateRemarkActivity" />
         <activity android:name=".mvp.MainActivity" />
     </application>
 

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".mvp.residemenu.activity.UserInfoActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.example.androidmvp.widget.CircleImageView
+            android:id="@+id/uf_touxiang"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:scaleType="fitXY"
+            />
+
+        <TextView
+            android:id="@+id/uf_username"
+            android:background="@drawable/edit_bound_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_below="@id/uf_touxiang"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:text="用户名："
+            android:textSize="25dp"
+            />
+
+        <EditText
+            android:id="@+id/uf_username_et"
+            android:background="@drawable/edit_bound_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:gravity="center"
+            android:layout_toRightOf="@id/uf_username"
+            android:layout_marginRight="30dp"
+            android:layout_alignTop="@id/uf_username"
+            android:layout_alignBottom="@id/uf_username"
+            />
+
+        <TextView
+            android:id="@+id/uf_email"
+            android:background="@drawable/edit_bound_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:text="邮箱："
+            android:textSize="25dp"
+            android:layout_below="@id/uf_username"
+            android:layout_alignLeft="@id/uf_username"
+            android:layout_alignRight="@id/uf_username"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            />
+
+        <EditText
+            android:id="@+id/uf_email_et"
+            android:background="@drawable/edit_bound_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:gravity="center"
+            android:inputType="textEmailAddress"
+            android:layout_toRightOf="@id/uf_email"
+            android:layout_alignTop="@id/uf_email"
+            android:layout_alignBottom="@id/uf_email"
+            android:layout_alignRight="@id/uf_username_et"
+            />
+
+
+        <TextView
+            android:id="@+id/uf_password"
+            android:background="@drawable/edit_bound_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:text="密码："
+            android:textSize="25dp"
+            android:layout_below="@id/uf_email"
+            android:layout_alignLeft="@id/uf_email"
+            android:layout_alignRight="@id/uf_email"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            />
+
+        <EditText
+            android:id="@+id/uf_password_et"
+            android:background="@drawable/edit_bound_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:textSize="25dp"
+            android:gravity="center"
+            android:layout_toRightOf="@id/uf_password"
+            android:layout_alignTop="@id/uf_password"
+            android:layout_alignBottom="@id/uf_password"
+            android:layout_alignRight="@id/uf_username_et"
+            />
+
+
+        <TextView
+            android:id="@+id/uf_gender"
+            android:background="@drawable/edit_bound_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:text="性别："
+            android:textSize="25dp"
+            android:layout_below="@id/uf_password"
+            android:layout_alignLeft="@id/uf_password"
+            android:layout_alignRight="@id/uf_password"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            />
+
+        <EditText
+            android:id="@+id/uf_gender_et"
+            android:background="@drawable/edit_bound_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:gravity="center"
+            android:layout_toRightOf="@id/uf_gender"
+            android:layout_alignTop="@id/uf_gender"
+            android:layout_alignBottom="@id/uf_gender"
+            android:layout_alignRight="@id/uf_password_et"
+            />
+
+
+        <TextView
+            android:id="@+id/uf_age"
+            android:background="@drawable/edit_bound_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:text="年龄："
+            android:textSize="25dp"
+            android:layout_below="@id/uf_gender"
+            android:layout_alignLeft="@id/uf_gender"
+            android:layout_alignRight="@id/uf_gender"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            />
+
+        <EditText
+            android:id="@+id/uf_age_et"
+            android:background="@drawable/edit_bound_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:gravity="center"
+            android:inputType="numberDecimal"
+            android:layout_toRightOf="@id/uf_age"
+            android:layout_alignTop="@id/uf_age"
+            android:layout_alignBottom="@id/uf_age"
+            android:layout_alignRight="@id/uf_gender_et"
+            />
+
+        <Button
+            android:id="@+id/uf_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="返回"
+            android:textSize="25dp"
+            android:textColor="@color/blue_pressed"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="100dp"
+            android:layout_marginLeft="80dp"
+            />
+        <Button
+            android:id="@+id/uf_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="修改"
+            android:textSize="25dp"
+            android:textColor="@color/blue_pressed"
+            android:layout_alignTop="@id/uf_back"
+            android:layout_toRightOf="@id/uf_back"
+            android:layout_marginLeft="60dp"
+            />
+    </RelativeLayout>
+
+
+</RelativeLayout>

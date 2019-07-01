@@ -2,6 +2,7 @@ package com.example.androidmvp.data.httpdata;
 
 
 import android.media.Image;
+import android.net.Uri;
 import android.util.Log;
 
 import com.example.androidmvp.common.Constant;
@@ -23,6 +24,7 @@ import com.example.androidmvp.mvp.entity.localdb.City;
 import com.example.androidmvp.mvp.entity.localdb.Country;
 import com.example.androidmvp.mvp.entity.localdb.Province;
 import com.example.androidmvp.mvp.entity.localdb.Token;
+import com.example.androidmvp.util.PhotoUtil;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -95,8 +97,25 @@ public class HttpData extends RetrofitUtil {
         setSubscribe(observable, observer);
     }
 
-    public void changeInfo(Observer<UserResult> observer, String username, MultipartBody multipartBody) {
-        Observable observable = loginService.changeInfo(username, multipartBody);
+    public void changeInfo(Observer<UserResult> observer, UserResult userResult) {
+
+        MultipartBody.Builder builder = new MultipartBody.Builder();
+//文本部分
+        builder.addFormDataPart("email", userResult.getEmail());
+        builder.addFormDataPart("gender", userResult.getGender());
+        builder.addFormDataPart("age", "" + userResult.getAge());
+        builder.addFormDataPart("username", userResult.getUsername());
+        builder.addFormDataPart("password", userResult.getPassword());
+
+        File file = new File(userResult.getIcon());
+        RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"), file);
+        builder.addFormDataPart("icon", file.getName(), requestBody); // “image”为文件参数的参数名（由服务器后台提供）
+
+
+        builder.setType(MultipartBody.FORM);
+        MultipartBody multipartBody = builder.build();
+
+        Observable observable = loginService.changeInfo(userResult.getUsername(), multipartBody);
         setSubscribe(observable, observer);
     }
 

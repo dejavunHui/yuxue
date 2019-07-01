@@ -17,6 +17,7 @@ import android.widget.FrameLayout;
 import com.example.androidmvp.R;
 import com.example.androidmvp.mvp.base.BaseActivity;
 import com.example.androidmvp.mvp.entity.UserResult;
+import com.example.androidmvp.mvp.residemenu.activity.UserInfoActivity;
 import com.example.androidmvp.mvp.show.activity.CreateRemarkActivity;
 import com.example.androidmvp.mvp.show.activity.CreateShowPageActivity;
 import com.example.androidmvp.mvp.show.fragment.ShowFragment;
@@ -43,6 +44,7 @@ public class MainActivity extends BaseActivity {
 
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
+    private UserResult result;
 
     private void initResideMenu() {
         resideMenu = new ResideMenu(this);
@@ -50,7 +52,7 @@ public class MainActivity extends BaseActivity {
         resideMenu.setBackground(R.drawable.menubak);
         ItemClickListener listener = new ItemClickListener();
 
-        String[] titles = {"我的信息", "我的动态", "退出登录", "关于我们"};
+        String[] titles = {"千机阁", "听雨轩", "退出登录", "关于我们"};
         int[] icons = {R.drawable.dot_selected, R.drawable.dot_selected,
                 R.drawable.dot_selected, R.drawable.dot_selected};
         for(int i = 0;i < titles.length;i ++){
@@ -121,7 +123,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void processLogic() {
         Bundle bundle = getIntent().getExtras();
-        UserResult result = (UserResult) bundle.getSerializable("user");
+        result = (UserResult) bundle.getSerializable("user");
 
         Log.d(TAG, "processLogic: "+result.getUsername());
         editor.putString("c_user",result.getUsername());
@@ -156,6 +158,15 @@ public class MainActivity extends BaseActivity {
     class ItemClickListener implements View.OnClickListener{
         @Override
         public void onClick(View v) {
+
+            if(v == items.get(0)){
+                //跳转个人信息
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("user",result);
+                Intent intent = new Intent(MainActivity.this, UserInfoActivity.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
 
         }
     }

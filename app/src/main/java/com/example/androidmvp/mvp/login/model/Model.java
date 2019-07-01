@@ -74,35 +74,4 @@ public class Model {
     }
 
 
-    /**
-     * 更新信息
-     * @param loadDataListener
-     * @param username
-     * @param multipartBody
-     */
-    public void changeInfo(final OnLoadDataListener<UserResult> loadDataListener,String username, MultipartBody multipartBody){
-        HttpData.getInstance().changeInfo(new Observer<UserResult>() {
-            @Override
-            public void onSubscribe(Disposable d) {
-
-            }
-
-            @Override
-            public void onNext(UserResult value) {
-                loadDataListener.onSuccess(value);
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                loadDataListener.onError(e);
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
-        }, username, multipartBody);
-
-    }
-
 }
