@@ -17,6 +17,7 @@ import com.dd.processbutton.iml.ActionProcessButton;
 import com.example.androidmvp.R;
 import com.example.androidmvp.common.Constant;
 import com.example.androidmvp.mvp.base.BaseFragment;
+import com.example.androidmvp.mvp.entity.UserResult;
 import com.example.androidmvp.mvp.login.activity.DoActivity;
 import com.example.androidmvp.mvp.login.presenter.LoginPresenter;
 import com.example.androidmvp.mvp.login.view.BaseLoginView;
@@ -37,6 +38,8 @@ public class LoginFragment extends BaseFragment implements BaseLoginView {
     private TextView toRegister;
     private DoActivity activity;
     private LoginPresenter presenter;
+
+    public UserResult user;
 
     public void setActivity(DoActivity activity) {
         this.activity = activity;
@@ -133,7 +136,12 @@ public class LoginFragment extends BaseFragment implements BaseLoginView {
 
             }
         }
+
+
     }
 
-
+    @Override
+    public void setUser(UserResult user) {
+        this.user = user;
+    }
 }

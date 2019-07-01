@@ -4,9 +4,9 @@
     android:layout_height="wrap_content">
 
     <RelativeLayout
-        android:background="@color/theme_700"
+        android:background="@drawable/timg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="100dp">
 
         <ImageView
             android:id="@+id/show_head_user_image"
@@ -14,7 +14,7 @@
             android:layout_height="80dp"
             android:scaleType="fitXY"
             android:src="@drawable/login_bk"
-            android:layout_marginTop="10dp"
+            android:layout_margin="10dp"
             android:padding="1dp"
             />
 
@@ -33,7 +33,7 @@
             android:id="@+id/fashuoshuo"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/ic_edit"
+            android:background="@drawable/stoneaddcircleoutline"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             />

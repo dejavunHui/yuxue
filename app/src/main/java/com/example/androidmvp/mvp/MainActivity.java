@@ -1,8 +1,11 @@
 package com.example.androidmvp.mvp;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -13,17 +16,21 @@ import android.widget.FrameLayout;
 
 import com.example.androidmvp.R;
 import com.example.androidmvp.mvp.base.BaseActivity;
+import com.example.androidmvp.mvp.entity.UserResult;
+import com.example.androidmvp.mvp.show.activity.CreateRemarkActivity;
+import com.example.androidmvp.mvp.show.activity.CreateShowPageActivity;
+import com.example.androidmvp.mvp.show.fragment.ShowFragment;
 import com.special.ResideMenu.ResideMenu;
 import com.special.ResideMenu.ResideMenuItem;
 import com.wakehao.bar.BottomNavigationBar;
+import com.wakehao.bar.BottomNavigationItemWithDot;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-
 public class MainActivity extends BaseActivity {
 
+    public static final String CURRENTUSERINFO = "com.example.currentuser.user";
 
     private static final String TAG = "MainActivity";
 
@@ -32,9 +39,10 @@ public class MainActivity extends BaseActivity {
     private ResideMenu resideMenu;
 
     private List<ResideMenuItem> items = new ArrayList<>();
-
-
     private BottomNavigationBar bar;
+
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
 
     private void initResideMenu() {
         resideMenu = new ResideMenu(this);
@@ -100,16 +108,29 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void findViewById() {
         bar = findViewById(R.id.bottombar);
+        preferences = getPreferences(MODE_PRIVATE);
+        editor = preferences.edit();
     }
 
     @Override
     protected void setListener() {
+
         initResideMenu();
     }
 
     @Override
     protected void processLogic() {
+        Bundle bundle = getIntent().getExtras();
+        UserResult result = (UserResult) bundle.getSerializable("user");
 
+        Log.d(TAG, "processLogic: "+result.getUsername());
+        editor.putString("c_user",result.getUsername());
+        editor.putString("c_email",result.getEmail());
+        editor.putString("c_gender",result.getGender());
+        editor.putString("c_icon",result.getIcon());
+        editor.putInt("c_age",result.getAge());
+        editor.putString("c_password",result.getPassword());
+        editor.commit();
     }
 
     @Override
@@ -121,6 +142,17 @@ public class MainActivity extends BaseActivity {
         return this;
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == ShowFragment.REQUEST_CODE ){
+            bar.setItemSelected(1,false);
+        }
+    }
+
+
+    //点击菜单逻辑
     class ItemClickListener implements View.OnClickListener{
         @Override
         public void onClick(View v) {

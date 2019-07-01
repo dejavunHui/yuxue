@@ -26,15 +26,19 @@
             android:exported="true"></service>
 
         <activity android:name=".mvp.login.activity.DoActivity">
-
-        </activity>
-        <activity android:name=".data.test.TestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".data.test.TestActivity">
+
+        </activity>
+        <activity android:name=".mvp.show.activity.CreateShowPageActivity">
+
+        </activity>
+        <activity android:name=".mvp.show.activity.CreateRemarkActivity"/>
         <activity android:name=".mvp.MainActivity" />
     </application>
 

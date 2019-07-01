@@ -11,6 +11,7 @@ public class Remark {
     String from;
     String to;
     String content;
+    String page;
     List<String> images;
 
     public int getId() {
@@ -51,5 +52,13 @@ public class Remark {
 
     public void setImages(List<String> images) {
         this.images = images;
+    }
+
+    public String getPage() {
+        return page;
+    }
+
+    public void setPage(String page) {
+        this.page = page;
     }
 }

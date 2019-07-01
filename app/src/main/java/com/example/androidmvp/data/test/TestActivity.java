@@ -65,10 +65,10 @@ public class TestActivity extends AppCompatActivity {
 //        login();
 //        getWeatherInfo("CN101240409");
 //        testpeom();
-//        testW("101240409");
+        testW("101240409");
 //        postShowpage("消耗风吃屎","dejavun","消耗分是大傻逼爱吃屎");
 //        postRemark("dejavun","dejavun","1","你说的没错");
-        getShowpages();
+//        getShowpages();
     }
 
     void getShowpages(){
@@ -87,7 +87,7 @@ public class TestActivity extends AppCompatActivity {
 
             @Override
             public void onError(Throwable e) {
-                Log.d(TAG, "onError: "+e.getMessage());
+                e.printStackTrace();
             }
 
             @Override

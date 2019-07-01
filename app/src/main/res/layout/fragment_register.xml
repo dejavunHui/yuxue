@@ -131,7 +131,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="已有帐号，去登录"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textColor="@color/cpb_white"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"

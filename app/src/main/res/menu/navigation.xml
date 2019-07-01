@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/wealth"
-        android:title="天气"
+        android:title="谈天"
         fragment="com.example.androidmvp.mvp.wealth.fragment.WealthMainFragment"
         android:icon="@mipmap/ic_launcher_round"
         icon2="@mipmap/ic_launcher_round"
@@ -10,7 +10,7 @@
         ></item>
     <item
         android:id="@+id/show"
-        android:title="晒一晒"
+        android:title="说雨"
         fragment="com.example.androidmvp.mvp.show.fragment.ShowFragment"
         android:icon="@mipmap/ic_launcher_round"
         icon2="@mipmap/ic_launcher_round"
@@ -18,7 +18,7 @@
         ></item>
     <item
         android:id="@+id/find"
-        android:title="发现"
+        android:title="听风"
         fragment="com.example.androidmvp.mvp.find.fragment.FindFragment"
         android:icon="@mipmap/ic_launcher_round"
         icon2="@mipmap/ic_launcher_round"

@@ -7,12 +7,13 @@ import com.example.androidmvp.common.Constant;
 import com.example.androidmvp.util.PhotoUtil;
 
 import java.io.File;
+import java.io.Serializable;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
-public final class UserResult {
+public final class UserResult implements Serializable {
 
     private String email;
     private String gender;

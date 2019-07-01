@@ -40,14 +40,16 @@ public class WealthPresenter {
             public void onSuccess(PeomResult data) {
 //                Log.d(TAG, "onSuccess: "+data.getData().getContent());
                 String[] peom = data.getData().getContent().split("，");
-                String f = peom[0];
-                String l;
-                if(peom[1].endsWith("。"))
-                     l = peom[1].substring(0,peom[1].length()-1);
-                else
-                    l = peom[1];
+                if(peom.length == 2) {
+                    String f = peom[0];
+                    String l;
+                    if (peom[1].endsWith("。"))
+                        l = peom[1].substring(0, peom[1].length() - 1);
+                    else
+                        l = peom[1];
 //                Log.d(TAG, "onSuccess: "+f+":"+l);
-                view.setPeom(f, l);
+                    view.setPeom(f, l);
+                }
             }
 
             @Override

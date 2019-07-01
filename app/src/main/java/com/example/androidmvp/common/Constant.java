@@ -9,7 +9,7 @@ public class Constant {
 
         public static final String API = "http://t.weather.sojson.com/api/weather/city/";
         public static final String SERVERIP = "http://39.106.67.218:9999/";
-        public static final String SERVERROOT = "home/androidService";
+        public static final String IMAGEURLROOT = "http://39.106.67.218:8088/";
         //模拟
         public static final String WEATHERAPI = "http://guolin.tech/api/";
         public static final String PLACEJSON = "http://guolin.tech/api/";

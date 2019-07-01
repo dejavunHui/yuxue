@@ -13,6 +13,7 @@ public class ShowPage {
     String title;
     String content;
     String user;
+    String timestamp;
     List<Remark> remarks;
     List<String> images;
 
@@ -22,6 +23,14 @@ public class ShowPage {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 
     public String getTitle() {

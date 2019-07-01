@@ -109,6 +109,10 @@ dependencies {
         exclude group: 'com.android.support'
     }
 
+    //动态权限
+    implementation 'com.yanzhenjie.permission:support:2.0.1'
 
+    //图片选择器
+    implementation 'com.lzy.widget:imagepicker:0.6.1'
 
 }

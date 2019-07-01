@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/showitem"
     android:orientation="vertical"
-
+    android:background="@drawable/timg"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -12,6 +12,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_alignParentLeft="true"
+        android:scaleType="fitXY"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp" />
 
@@ -65,7 +66,6 @@
         android:id="@+id/show_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="山西太原"
         android:textSize="18dp"
         android:layout_below="@id/showimages"
         android:layout_alignLeft="@id/showimages"
@@ -76,18 +76,18 @@
         android:id="@+id/dianzan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_heart_fill"
-        android:background="@color/white"
         android:layout_alignTop="@id/show_location"
-        android:layout_toLeftOf="@id/show_remark"
+        android:layout_marginTop="0dp"
         android:layout_marginRight="10dp"
-        />
+        android:layout_toLeftOf="@id/show_remark"
+        android:background="@null"
+        android:src="@drawable/ic_heart_fill" />
 
     <ImageButton
         android:id="@+id/show_remark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@null"
         android:src="@drawable/ic_message"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@id/show_location"
@@ -97,18 +97,27 @@
     <LinearLayout
         android:id="@+id/remarkLayout"
         android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/remark_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/show_remark"
-        android:layout_alignRight="@id/showimages"
         android:layout_alignLeft="@id/showimages"
+        android:layout_marginRight="20dp"
+        >
+
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/edit_remark"
+        android:background="@drawable/edit_bound_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="50dp"
+        android:hint="说点什么吧..."
+        android:textSize="20dp"
+        android:layout_marginRight="50dp"
+        android:layout_below="@id/remarkLayout"
+        android:layout_centerHorizontal="true"
         />
 
 </RelativeLayout>

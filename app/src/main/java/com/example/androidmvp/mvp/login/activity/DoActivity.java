@@ -2,9 +2,12 @@ package com.example.androidmvp.mvp.login.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.LocalBroadcastManager;
 
 import com.example.androidmvp.R;
 import com.example.androidmvp.mvp.MainActivity;
@@ -14,6 +17,7 @@ import com.example.androidmvp.mvp.login.fragment.RegisterFragment;
 import com.example.androidmvp.mvp.login.presenter.LoginPresenter;
 
 public class DoActivity extends BaseActivity {
+
 
     private LoginFragment loginFragment;
     private RegisterFragment registerFragment;
@@ -89,7 +93,11 @@ public class DoActivity extends BaseActivity {
     }
 
     public void login(){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("user",loginFragment.user);
+
         Intent intent = new Intent(DoActivity.this, MainActivity.class);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 

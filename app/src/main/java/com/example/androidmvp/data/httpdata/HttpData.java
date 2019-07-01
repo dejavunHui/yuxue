@@ -200,7 +200,8 @@ public class HttpData extends RetrofitUtil {
 
         MultipartBody.Builder builder = new MultipartBody.Builder();
         builder.addFormDataPart("autor", autor);
-        builder.addFormDataPart("to", to);
+        if (to != null)
+            builder.addFormDataPart("to", to);
         builder.addFormDataPart("page", page);
         builder.addFormDataPart("content", content);
 
@@ -221,12 +222,17 @@ public class HttpData extends RetrofitUtil {
     public void upImage(Observer<ImageResult> observer, String showpage, String remark, String image) {
 
         MultipartBody.Builder builder = new MultipartBody.Builder();
+        if (showpage != null)
+            builder.addFormDataPart("showpage", showpage);
+        if (remark != null)
+            builder.addFormDataPart("remark", remark);
 
         File file = new File(image);
         RequestBody body = RequestBody.create(MediaType.parse("image/png"), file);
+        builder.addFormDataPart("image", file.getName(), body);
+        builder.setType(MultipartBody.FORM);
 
         MultipartBody multipartBody = builder.build();
-
         Observable observable = showPageService.postImages(multipartBody);
         setSubscribe(observable, observer);
     }
@@ -239,38 +245,40 @@ public class HttpData extends RetrofitUtil {
             @Override
             public List<ShowPage> apply(List<ShowPageResult> o, List<RemarkResult> o2, List<ImageResult> o3) throws Exception {
                 List<ShowPage> showPages = new ArrayList<>();
-                List<String> images = new ArrayList<>();
-                List<Remark> remarks = new ArrayList<>();
+
                 for (ShowPageResult showpageBean : o) {
+                    List<String> images = new ArrayList<>();
+                    List<Remark> remarks = new ArrayList<>();
                     ShowPage page = new ShowPage();
                     page.setId(showpageBean.getId());
                     page.setUser(showpageBean.getAutor());
                     page.setContent(showpageBean.getContent());
                     page.setTitle(showpageBean.getTitle());
+                    page.setTimestamp(showpageBean.getTime());
                     String showpageid = String.valueOf(showpageBean.getId());
-                    List<ImageResult> image_remark = new ArrayList<>();
-                    for (ImageResult imageBean : o3){
-                        if(imageBean.getShowpage().equals(showpageid)){
+                    for (ImageResult imageBean : o3) {
+                        if (imageBean.getShowpage() != null && imageBean.getShowpage().equals(showpageid)) {
                             images.add(imageBean.getImage());
-                        }else {
-                            image_remark.add(imageBean);
                         }
                     }
-                    for(RemarkResult remarkBean:o2){
-                        if(remarkBean.getPage().equals(showpageid)){
+                    for (RemarkResult remarkBean : o2) {
+                        if (remarkBean.getPage().equals(showpageid)) {
                             Remark remark = new Remark();
                             remark.setId(remarkBean.getId());
                             remark.setFrom(remarkBean.getAuotr());
                             remark.setTo(remarkBean.getTo());
                             remark.setContent(remarkBean.getContent());
+                            remark.setPage(showpageid);
+                            String remarkid = String.valueOf(remarkBean.getId());
                             List<String> image = new ArrayList<>();
-
-                            for(ImageResult bean:image_remark){
-                                if(bean.getRemark().equals(bean.getId())){
+                            for (ImageResult bean : o3) {
+                                if (bean.getRemark() != null && bean.getRemark().equals(remarkid)) {
                                     image.add(bean.getImage());
                                 }
                             }
+                            remark.setImages(image);
                             remarks.add(remark);
+
                         }
                     }
                     page.setImages(images);
@@ -281,7 +289,7 @@ public class HttpData extends RetrofitUtil {
                 return showPages;
             }
         }).subscribeOn(Schedulers.computation());
-        setSubscribe(observable,observer);
+        setSubscribe(observable, observer);
     }
 
     /**

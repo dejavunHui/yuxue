@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -45,6 +46,7 @@ public class WeekFragment extends BaseFragment implements BaseWealthView {
     private TextView title;
     private TextView firstPeom;
     private TextView secondPeom;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     private LocalBroadcastManager broadcastManager;
     private BroadcastReceiver receiver;
@@ -84,6 +86,7 @@ public class WeekFragment extends BaseFragment implements BaseWealthView {
         adapter = new CityWealthAdapter(getContext(),new ArrayList<WealthResultReal.ForeCast>());
         weekWealth.setLayoutManager(manager);
         weekWealth.setAdapter(adapter);
+        swipeRefreshLayout = rootView.findViewById(R.id.xiala);
         firstPeom = rootView.findViewById(R.id.lock_week_peom_1);
         secondPeom = rootView.findViewById(R.id.lock_week_peom_2);
         preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
@@ -99,6 +102,15 @@ public class WeekFragment extends BaseFragment implements BaseWealthView {
             @Override
             public void onClick(View v) {
                 presenter.loadPeom();
+            }
+        });
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                changeUI(country);
+                swipeRefreshLayout.setRefreshing(false);
+                showMessage("更新成功");
             }
         });
 

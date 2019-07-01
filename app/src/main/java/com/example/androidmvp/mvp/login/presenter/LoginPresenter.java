@@ -29,6 +29,7 @@ public class LoginPresenter implements OnLoadDataListener<UserResult> {
     public void onSuccess(UserResult data) {
         String username = data.getUsername();
         if (username != null) {
+            view.setUser(data);
             view.login(Constant.Types.SUCCESS);
         } else {
             view.login(Constant.Types.FAIL);

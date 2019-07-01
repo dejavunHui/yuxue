@@ -6,7 +6,10 @@
     android:layout_height="match_parent"
     android:id="@+id/lock_week_wealth"
     >
-
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/xiala"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <RelativeLayout
         android:background="@color/white"
         android:layout_width="match_parent"
@@ -96,4 +99,5 @@
 
     </RelativeLayout>
 
+    </android.support.v4.widget.SwipeRefreshLayout>
 </FrameLayout>
