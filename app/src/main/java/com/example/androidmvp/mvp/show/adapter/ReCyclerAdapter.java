@@ -1,16 +1,15 @@
 package com.example.androidmvp.mvp.show.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Rect;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,13 +21,17 @@ import com.example.androidmvp.common.Constant;
 import com.example.androidmvp.data.httpdata.HttpData;
 import com.example.androidmvp.mvp.entity.UserResult;
 import com.example.androidmvp.mvp.entity.db.Remark;
-import com.example.androidmvp.mvp.entity.show.ImageResult;
 import com.example.androidmvp.mvp.entity.db.ShowPage;
+import com.example.androidmvp.util.PreviewImageLoader;
 import com.example.androidmvp.widget.CircleImageView;
 import com.example.androidmvp.widget.MyRemarkView;
 import com.jaeger.ninegridimageview.NineGridImageView;
 import com.jaeger.ninegridimageview.NineGridImageViewAdapter;
+import com.previewlibrary.GPreviewBuilder;
+import com.previewlibrary.ZoomMediaLoader;
+import com.example.androidmvp.mvp.entity.ThumbViewInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observer;
@@ -182,7 +185,6 @@ public class ReCyclerAdapter extends RecyclerView.Adapter<ReCyclerAdapter.MyView
         LayoutInflater inflater;
         LinearLayout layout;
 
-
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             circleImageView = itemView.findViewById(R.id.show_user_image);
@@ -195,6 +197,7 @@ public class ReCyclerAdapter extends RecyclerView.Adapter<ReCyclerAdapter.MyView
             inflater = LayoutInflater.from(context);
             layout = itemView.findViewById(R.id.remarkLayout);
             pinglun = itemView.findViewById(R.id.edit_remark);
+            final ArrayList<ThumbViewInfo> mThumbViewInfoList = new ArrayList<>();
             viewAdapter = new NineGridImageViewAdapter<String>() {
                 @Override
                 protected void onDisplayImage(Context context, ImageView imageView, String image) {
@@ -202,8 +205,26 @@ public class ReCyclerAdapter extends RecyclerView.Adapter<ReCyclerAdapter.MyView
                 }
 
                 @Override
-                protected void onItemImageClick(Context context, int index, List list) {
+                protected void onItemImageClick(Context context, int index, List<String> list) {
                     super.onItemImageClick(context, index, list);
+                    Log.d(TAG, "onItemImageClick: "+"点击了"+index + " "+list.get(index));
+
+                    ThumbViewInfo item;
+                    mThumbViewInfoList.clear();
+                    for (int i = 0;i < list.size(); i++) {
+                        Rect bounds = new Rect();
+                        //new ThumbViewInfo(图片地址);
+                        item=new ThumbViewInfo(Constant.Urls.IMAGEURLROOT+list.get(i));
+                        item.setBounds(bounds);
+                        mThumbViewInfoList.add(item);
+                    }
+                    GPreviewBuilder.from((Activity)context)
+//                            .to(xxActivity.class)//使用自定义界面
+                            .setData(mThumbViewInfoList)
+                            .setCurrentIndex(index)
+                            .setSingleFling(true)
+                            .setType(GPreviewBuilder.IndicatorType.Dot)
+                            .start();
                 }
 
                 @Override
@@ -226,6 +247,7 @@ public class ReCyclerAdapter extends RecyclerView.Adapter<ReCyclerAdapter.MyView
     public interface OnItemClickListener {
         void onItemClick(View view, List<ShowPage> showPageResults, int position);
     }
+
 
 
 }

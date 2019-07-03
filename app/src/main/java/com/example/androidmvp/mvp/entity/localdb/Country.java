@@ -15,6 +15,16 @@ public class Country extends DataSupport implements Serializable {
 
     private int cityId;
 
+    public Country(int id, String countryName, String weatherId, int cityId) {
+        this.id = id;
+        this.countryName = countryName;
+        this.weatherId = weatherId;
+        this.cityId = cityId;
+    }
+
+    public Country() {
+    }
+
     public int getId() {
         return id;
     }

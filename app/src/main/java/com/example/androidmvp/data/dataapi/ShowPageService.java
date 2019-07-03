@@ -40,13 +40,13 @@ public interface ShowPageService {
 
 
     @DELETE("service/showpages/{id}/")
-    Observable<ShowPageResult> deleteShowpage(@Body MultipartBody multipartBody,@Path("id")String id);
+    Observable<ShowPageResult> deleteShowpage(@Path("id")String id);
 
     @DELETE("service/remarks/{id}/")
-    Observable<RemarkResult> deleteRemark(@Body MultipartBody multipartBody,@Path("id") String id);
+    Observable<RemarkResult> deleteRemark(@Path("id") String id);
 
     @DELETE("service/images/{id}/")
-    Observable<ImageResult> deleteImages(@Body MultipartBody multipartBody,@Path("id") String id);
+    Observable<ImageResult> deleteImages(@Path("id") String id);
 
 
     @GET("service/showpages/")

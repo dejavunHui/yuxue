@@ -7,10 +7,12 @@ import android.util.Log;
 
 import com.example.androidmvp.common.Constant;
 import com.example.androidmvp.data.dataapi.CityService;
+import com.example.androidmvp.data.dataapi.FindPageService;
 import com.example.androidmvp.data.dataapi.LoginService;
 import com.example.androidmvp.data.dataapi.ShowPageService;
 import com.example.androidmvp.data.dataapi.WealthService;
 import com.example.androidmvp.data.retrofit.RetrofitUtil;
+import com.example.androidmvp.mvp.entity.FindPageResult;
 import com.example.androidmvp.mvp.entity.db.Remark;
 import com.example.androidmvp.mvp.entity.db.ShowPage;
 import com.example.androidmvp.mvp.entity.show.ImageResult;
@@ -63,6 +65,7 @@ public class HttpData extends RetrofitUtil {
     protected WealthService peomService = getRetrofit(Constant.Urls.PEOM).create(WealthService.class);
     private WealthService tokenService = getRetrofit(Constant.Urls.TOKEN).create(WealthService.class);
     protected WealthService realWeather = getRetrofit(Constant.Urls.API).create(WealthService.class);
+    protected FindPageService findPageService = getRetrofit(Constant.Urls.DAYPAGE).create(FindPageService.class);
 
     private static class SingletonHolder {
         private static final HttpData INSTANCE = new HttpData();
@@ -107,9 +110,11 @@ public class HttpData extends RetrofitUtil {
         builder.addFormDataPart("username", userResult.getUsername());
         builder.addFormDataPart("password", userResult.getPassword());
 
-        File file = new File(userResult.getIcon());
-        RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"), file);
-        builder.addFormDataPart("icon", file.getName(), requestBody); // “image”为文件参数的参数名（由服务器后台提供）
+        if(userResult.getIcon() != null) {
+            File file = new File(userResult.getIcon());
+            RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"), file);
+            builder.addFormDataPart("icon", file.getName(), requestBody); // “image”为文件参数的参数名（由服务器后台提供）
+        }
 
 
         builder.setType(MultipartBody.FORM);
@@ -160,7 +165,7 @@ public class HttpData extends RetrofitUtil {
         setSubscribe(observable, observer);
     }
 
-    public void getPeom(Observer<PeomResult> observer) {
+    public void getPeom(final Observer<PeomResult> observer) {
         List<Token> token = Token.findAll(Token.class);
         if (token.size() > 0) {
             Log.d(TAG, "getPeom: " + token.get(0).getData());
@@ -177,6 +182,8 @@ public class HttpData extends RetrofitUtil {
                 public void onNext(Token value) {
                     Log.d(TAG, "onNext: " + value.getStatus() + value.getData());
                     value.save();
+                    Observable observable = peomService.getPeom(value.getData());
+                    setSubscribe(observable, observer);
                 }
 
                 @Override
@@ -189,10 +196,7 @@ public class HttpData extends RetrofitUtil {
 
                 }
             });
-            token = Token.findAll(Token.class);
-            Log.d(TAG, "getPeom: " + token.size());
-            Observable observable = peomService.getPeom(token.get(0).getData());
-            setSubscribe(observable, observer);
+
         }
     }
 
@@ -310,6 +314,89 @@ public class HttpData extends RetrofitUtil {
         }).subscribeOn(Schedulers.computation());
         setSubscribe(observable, observer);
     }
+
+    public void getOnesShowpages(Observer<List<ShowPage>> observer, final String user) {
+        Observable observable1 = showPageService.getShowpages();
+        Observable observable2 = showPageService.getRemarks();
+        Observable observable3 = showPageService.getImages();
+        Observable observable = Observable.zip(observable1, observable2, observable3, new Function3<List<ShowPageResult>, List<RemarkResult>, List<ImageResult>, List<ShowPage>>() {
+            @Override
+            public List<ShowPage> apply(List<ShowPageResult> o, List<RemarkResult> o2, List<ImageResult> o3) throws Exception {
+                List<ShowPage> showPages = new ArrayList<>();
+
+                for (ShowPageResult showpageBean : o) {
+                    if(!showpageBean.getAutor().equals(user))
+                        continue;
+                    List<String> images = new ArrayList<>();
+                    List<Remark> remarks = new ArrayList<>();
+                    ShowPage page = new ShowPage();
+                    page.setId(showpageBean.getId());
+                    page.setUser(showpageBean.getAutor());
+                    page.setContent(showpageBean.getContent());
+                    page.setTitle(showpageBean.getTitle());
+                    page.setTimestamp(showpageBean.getTime());
+                    String showpageid = String.valueOf(showpageBean.getId());
+                    for (ImageResult imageBean : o3) {
+                        if (imageBean.getShowpage() != null && imageBean.getShowpage().equals(showpageid)) {
+                            images.add(imageBean.getImage());
+                        }
+                    }
+                    for (RemarkResult remarkBean : o2) {
+                        if (remarkBean.getPage().equals(showpageid)) {
+                            Remark remark = new Remark();
+                            remark.setId(remarkBean.getId());
+                            remark.setFrom(remarkBean.getAuotr());
+                            remark.setTo(remarkBean.getTo());
+                            remark.setContent(remarkBean.getContent());
+                            remark.setPage(showpageid);
+                            String remarkid = String.valueOf(remarkBean.getId());
+                            List<String> image = new ArrayList<>();
+                            for (ImageResult bean : o3) {
+                                if (bean.getRemark() != null && bean.getRemark().equals(remarkid)) {
+                                    image.add(bean.getImage());
+                                }
+                            }
+                            remark.setImages(image);
+                            remarks.add(remark);
+
+                        }
+                    }
+                    page.setImages(images);
+                    page.setRemarks(remarks);
+                    showPages.add(page);
+                }
+
+                return showPages;
+            }
+        }).subscribeOn(Schedulers.computation());
+        setSubscribe(observable, observer);
+    }
+
+    public void deleteShowpage(Observer<ShowPageResult> observer,String pageid){
+
+        Observable observable = showPageService.deleteShowpage(pageid);
+        setSubscribe(observable,observer);
+    }
+
+    public void deleteRemark(Observer<RemarkResult> observer,String remarkid){
+        Observable observable = showPageService.deleteRemark(remarkid);
+        setSubscribe(observable,observer);
+    }
+
+    public void deleteImage(Observer<ImageResult> observer,String imageid){
+        Observable observable = showPageService.deleteImages(imageid);
+        setSubscribe(observable,observer);
+    }
+
+
+    /*******************************************拉取发现文章*************************************************/
+
+    public void getDayPage(Observer<FindPageResult> observer,String date){
+        Observable observable = findPageService.getFindPage(1,date);
+        setSubscribe(observable,observer);
+    }
+
+
 
     /**
      * 插入观察者

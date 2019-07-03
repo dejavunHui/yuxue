@@ -1,12 +1,15 @@
 package com.example.androidmvp.mvp;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -14,10 +17,12 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 
+import com.example.androidmvp.MyApplication;
 import com.example.androidmvp.R;
 import com.example.androidmvp.mvp.base.BaseActivity;
 import com.example.androidmvp.mvp.entity.UserResult;
 import com.example.androidmvp.mvp.residemenu.activity.UserInfoActivity;
+import com.example.androidmvp.mvp.residemenu.activity.UserShowActivity;
 import com.example.androidmvp.mvp.show.activity.CreateRemarkActivity;
 import com.example.androidmvp.mvp.show.activity.CreateShowPageActivity;
 import com.example.androidmvp.mvp.show.fragment.ShowFragment;
@@ -32,7 +37,6 @@ import java.util.List;
 public class MainActivity extends BaseActivity {
 
     public static final String CURRENTUSERINFO = "com.example.currentuser.user";
-
     private static final String TAG = "MainActivity";
 
     static float x_o = 0;
@@ -45,6 +49,9 @@ public class MainActivity extends BaseActivity {
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
     private UserResult result;
+    private LocalBroadcastManager broadcastManager;
+    private BroadcastReceiver receiver;
+
 
     private void initResideMenu() {
         resideMenu = new ResideMenu(this);
@@ -112,6 +119,20 @@ public class MainActivity extends BaseActivity {
         bar = findViewById(R.id.bottombar);
         preferences = getPreferences(MODE_PRIVATE);
         editor = preferences.edit();
+
+        //信息更新接受广播
+        receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                result = (UserResult) intent.getSerializableExtra("user");
+                cacheUser();
+            }
+        };
+        broadcastManager = LocalBroadcastManager.getInstance(this);
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(UserInfoActivity.USER_INFO_UPDATE_BROADCAST);
+        broadcastManager.registerReceiver(receiver,filter);
+
     }
 
     @Override
@@ -125,7 +146,11 @@ public class MainActivity extends BaseActivity {
         Bundle bundle = getIntent().getExtras();
         result = (UserResult) bundle.getSerializable("user");
 
-        Log.d(TAG, "processLogic: "+result.getUsername());
+       cacheUser();
+    }
+
+    //缓存用户信息
+    public void cacheUser(){
         editor.putString("c_user",result.getUsername());
         editor.putString("c_email",result.getEmail());
         editor.putString("c_gender",result.getGender());
@@ -134,6 +159,7 @@ public class MainActivity extends BaseActivity {
         editor.putString("c_password",result.getPassword());
         editor.commit();
     }
+
 
     @Override
     protected void anything() {
@@ -150,6 +176,7 @@ public class MainActivity extends BaseActivity {
 
         if(requestCode == ShowFragment.REQUEST_CODE ){
             bar.setItemSelected(1,false);
+            ((ShowFragment)bar.getFragment(1)).loadData();
         }
     }
 
@@ -166,6 +193,16 @@ public class MainActivity extends BaseActivity {
                 Intent intent = new Intent(MainActivity.this, UserInfoActivity.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
+            }else if(v == items.get(1)){
+                //跳转个人动态
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("user",result);
+                Intent intent = new Intent(MainActivity.this, UserShowActivity.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }else if(v == items.get(2)){
+                //退出
+                MyApplication.getInstance().exit();
             }
 
         }

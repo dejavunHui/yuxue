@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.example.androidmvp.MyApplication;
 
-import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -29,7 +28,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         context = getActivityContext();
         initView();
-        ButterKnife.bind(this);
         initData();
         MyApplication.getInstance().addActivity(this);
     }

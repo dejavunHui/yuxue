@@ -15,7 +15,7 @@
             android:layout_height="80dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             />
 
         <TextView
@@ -64,6 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="25dp"
+            android:focusable="false"
             android:gravity="center"
             android:inputType="textEmailAddress"
             android:layout_toRightOf="@id/uf_email"
@@ -123,6 +124,7 @@
             android:layout_height="wrap_content"
             android:textSize="25dp"
             android:gravity="center"
+            android:focusable="false"
             android:layout_toRightOf="@id/uf_gender"
             android:layout_alignTop="@id/uf_gender"
             android:layout_alignBottom="@id/uf_gender"
@@ -137,6 +139,7 @@
             android:layout_height="45dp"
             android:text="年龄："
             android:textSize="25dp"
+            android:focusable="false"
             android:layout_below="@id/uf_gender"
             android:layout_alignLeft="@id/uf_gender"
             android:layout_alignRight="@id/uf_gender"

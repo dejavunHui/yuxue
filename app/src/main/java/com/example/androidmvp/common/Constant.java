@@ -15,6 +15,7 @@ public class Constant {
         public static final String PLACEJSON = "http://guolin.tech/api/";
         public static final String TOKEN = "https://v2.jinrishici.com/";
         public static final String PEOM = "https://v2.jinrishici.com/";
+        public static final String DAYPAGE = "https://interface.meiriyiwen.com/article/";
 
     }
 

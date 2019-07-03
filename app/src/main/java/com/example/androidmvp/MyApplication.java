@@ -3,6 +3,9 @@ package com.example.androidmvp;
 import android.app.Activity;
 import android.app.Application;
 
+import com.example.androidmvp.util.PreviewImageLoader;
+import com.previewlibrary.ZoomMediaLoader;
+
 import org.litepal.LitePalApplication;
 
 import java.util.ArrayList;
@@ -25,6 +28,7 @@ public class MyApplication extends LitePalApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        ZoomMediaLoader.getInstance().init(new PreviewImageLoader());
         instance = this;
     }
 

@@ -6,6 +6,8 @@ import android.net.NetworkInfo;
 import android.util.Log;
 
 import com.example.androidmvp.MyApplication;
+import com.example.androidmvp.common.Constant;
+import com.example.androidmvp.common.Lists;
 
 import java.io.File;
 import java.io.IOException;
@@ -76,6 +78,8 @@ public class OKHttpUtils {
             if (!isNetworkReachable(MyApplication.getInstance().getApplicationContext())) {
                 request = request.newBuilder()
                         .cacheControl(CacheControl.FORCE_CACHE)
+                        .removeHeader("User-Agent")
+                        .addHeader("User-Agent", Lists.userAges[1])
                         .build();
             }
             Response originalResponse = chain.proceed(request);
@@ -91,6 +95,7 @@ public class OKHttpUtils {
                 return originalResponse.newBuilder()
                         .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
                         .removeHeader("Pragma")
+                        .removeHeader("User-Agent")
                         .build();
             }
         }
@@ -105,6 +110,7 @@ public class OKHttpUtils {
             Request originalRequest = chain.request();
             Request authorised = originalRequest.newBuilder()
 //                    .header("YouzyApp_Sign", sysUtil.youzySing())
+                    .addHeader("User-Agent",Lists.userAges[1])
                     .header("YuXueApp_FromSource", "android-2.65")
                     .header("YuXueApp_IP", getLocalIpAddress())
                     .header("Content-Type", "application/json; charset=utf-8")

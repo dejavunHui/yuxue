@@ -11,6 +11,7 @@ public class Token extends DataSupport {
 
     @SerializedName("data")
     private String data;
+
     public void setStatus(String status) {
         this.status = status;
     }

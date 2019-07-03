@@ -1,17 +1,22 @@
 package com.example.androidmvp.mvp.entity;
 
-public final class FindPageResult{
+import com.google.gson.annotations.SerializedName;
 
-    int id;
+public class FindPageResult{
 
+    @SerializedName("data")
+    public Data data;
 
-    private int look;
+    public class Data{
+        @SerializedName("author")
+        public String author;
 
-    public int getLook() {
-        return look;
+        @SerializedName("title")
+        public String title;
+
+        @SerializedName("content")
+        public String content;
+
     }
 
-    public void setLook(int look) {
-        this.look = look;
-    }
 }

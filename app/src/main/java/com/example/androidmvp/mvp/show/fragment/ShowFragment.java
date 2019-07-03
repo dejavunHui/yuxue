@@ -1,6 +1,7 @@
 package com.example.androidmvp.mvp.show.fragment;
 
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -22,15 +24,18 @@ import com.baoyz.widget.PullRefreshLayout;
 import com.bumptech.glide.Glide;
 import com.example.androidmvp.R;
 import com.example.androidmvp.common.Constant;
+import com.example.androidmvp.mvp.MainActivity;
 import com.example.androidmvp.mvp.base.BaseFragment;
 import com.example.androidmvp.mvp.entity.db.Remark;
 import com.example.androidmvp.mvp.entity.db.ShowPage;
 import com.example.androidmvp.mvp.entity.UserResult;
+import com.example.androidmvp.mvp.residemenu.activity.UserInfoActivity;
 import com.example.androidmvp.mvp.show.activity.CreateRemarkActivity;
 import com.example.androidmvp.mvp.show.activity.CreateShowPageActivity;
 import com.example.androidmvp.mvp.show.adapter.ReCyclerAdapter;
 import com.example.androidmvp.mvp.show.presenter.ShowPresenter;
 import com.example.androidmvp.mvp.show.view.BaseShowView;
+import com.example.androidmvp.widget.CircleImageView;
 import com.example.androidmvp.widget.MyRemarkView;
 import com.jaeger.ninegridimageview.NineGridImageView;
 
@@ -62,7 +67,7 @@ public class ShowFragment extends BaseFragment implements BaseShowView {
     RecyclerView.LayoutManager layoutManager;
     ReCyclerAdapter adapter;
 
-    ImageView headerIcon;
+    CircleImageView headerIcon;
     TextView headerName;
     Button edit;
 
@@ -132,9 +137,15 @@ public class ShowFragment extends BaseFragment implements BaseShowView {
     }
 
     @Override
-    protected void loadData() {
+    public void loadData() {
         loadHeader();
         presenter.loadShowPages();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadHeader();
     }
 
     @Override
@@ -153,7 +164,7 @@ public class ShowFragment extends BaseFragment implements BaseShowView {
         user.setPassword(preferences.getString("c_password", ""));
 
         headerName.setText(user.getUsername());
-        Glide.with(getContext()).load(Constant.Urls.IMAGEURLROOT + user.getIcon()).into(headerIcon);
+        Glide.with(headerIcon.getContext()).load(Constant.Urls.IMAGEURLROOT + user.getIcon()).into(headerIcon);
     }
 
     @Override
@@ -199,6 +210,14 @@ public class ShowFragment extends BaseFragment implements BaseShowView {
                 case R.id.edit_remark:
                     editRemark(showPageResults.get(position));
                     break;
+                case R.id.show_user_image:
+                    //跳转到该用户个人信息
+                    Toast.makeText(getContext(),"访问别人信息功能尚在开发",Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.show_user_name:
+                    //跳转别人的动态页
+
+                    break;
             }
         }
 
@@ -221,9 +240,7 @@ public class ShowFragment extends BaseFragment implements BaseShowView {
             intent.putExtras(bundle);
             getActivity().startActivityForResult(intent, REQUEST_CODE);
         }
-        private void upRemarkStr(){
 
-        }
     }
 
     //显示头上的组件动作事件
@@ -236,9 +253,11 @@ public class ShowFragment extends BaseFragment implements BaseShowView {
                     break;
                 case R.id.show_head_user_image:
                     //跳转到我的信息
+                    toMysUser();
                     break;
                 case R.id.show_head_user_name:
                     //跳转到我的信息
+                    toMysUser();
                     break;
                 default:
                     break;
@@ -254,7 +273,15 @@ public class ShowFragment extends BaseFragment implements BaseShowView {
             intent.putExtras(bundle);
             getActivity().startActivityForResult(intent, REQUEST_CODE);
         }
-    }
 
+        public void toMysUser(){
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("user",user);
+            bundle.putString("own","Y");
+            Intent intent = new Intent(getContext(), UserInfoActivity.class);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
+    }
 
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -31,6 +32,8 @@ import java.util.List;
 
 public class UserInfoActivity extends BaseActivity implements BaseResideView {
 
+    public static final String USER_INFO_UPDATE_BROADCAST = "com.userinfo.update.notify";
+
     private ImageView userIcon;
     private EditText username;
     private EditText email;
@@ -42,6 +45,7 @@ public class UserInfoActivity extends BaseActivity implements BaseResideView {
 
     private String userIconPath;
     private UserResult user;
+    private String own = null;
     private ResidePresenter presenter;
 
 
@@ -114,6 +118,7 @@ public class UserInfoActivity extends BaseActivity implements BaseResideView {
         initWidget();
         Bundle bundle = getIntent().getExtras();
         user = (UserResult) bundle.getSerializable("user");
+        own = bundle.getString("own");
         userIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,13 +171,16 @@ public class UserInfoActivity extends BaseActivity implements BaseResideView {
         initUserInfo();
     }
 
-    private void initUserInfo(){
+    public void initUserInfo(){
         Glide.with(this).load(Constant.Urls.IMAGEURLROOT+user.getIcon()).error(R.drawable.ic_launcher).into(userIcon);
         username.setText(user.getUsername());
         email.setText(user.getEmail());
         age.setText(String.valueOf(user.getAge()));
         gender.setText(user.getGender());
         password.setText(user.getPassword());
+        if(own == "N"){
+            change.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override
@@ -206,7 +214,6 @@ public class UserInfoActivity extends BaseActivity implements BaseResideView {
                 case R.id.uf_change:
                     //更改信息
                     changeInfo();
-                    initUserInfo();
                     break;
                 case R.id.uf_back:
                     finish();
@@ -218,10 +225,23 @@ public class UserInfoActivity extends BaseActivity implements BaseResideView {
             user.setIcon(userIconPath);
             presenter.changeInfo(user);
         }
+
     }
 
     @Override
     public void showMessage(String message) {
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void setUser(UserResult user) {
+        this.user = user;
+    }
+
+    //用户信息更新，广播出去
+    public void sendBroadCast(){
+        Intent intent = new Intent(USER_INFO_UPDATE_BROADCAST);
+        intent.putExtra("user",user);
+        LocalBroadcastManager.getInstance(getActivityContext()).sendBroadcast(intent);
     }
 }

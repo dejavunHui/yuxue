@@ -72,6 +72,7 @@ public class WeekFragment extends BaseFragment implements BaseWealthView {
 //            Log.d(TAG, "initData: " + tag);
 //        }
         presenter = new WealthPresenter(this);
+        country = new Country(1,"尖草坪区","101100106",85);
     }
 
     @Override

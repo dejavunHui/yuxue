@@ -5,7 +5,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -30,11 +29,11 @@ public class WealthMainFragment extends BaseFragment {
 
     private static final String TAG = "WealthMainFragment";
     private LocalBroadcastManager broadcastManager;
-    BroadcastReceiver receiver;
+    private BroadcastReceiver receiver;
 
     DayFragment dayFragment;
     WeekFragment weekFragment;
-    StartBlankFragment citymanage;
+    ChooseCityFragment citymanage;
 
     //    @BindView(R.id.wealth_viewPager)
     private SCViewPager viewPager;
@@ -70,7 +69,7 @@ public class WealthMainFragment extends BaseFragment {
         fragments.clear();
         dayFragment = DayFragment.getInstance("d1");
         weekFragment = WeekFragment.getInstance("w1");
-        citymanage = StartBlankFragment.getInstance();
+        citymanage = ChooseCityFragment.getInstance();
         fragments.add(dayFragment);
         fragments.add(weekFragment);
         fragments.add(citymanage);
@@ -110,7 +109,7 @@ public class WealthMainFragment extends BaseFragment {
         };
         broadcastManager = LocalBroadcastManager.getInstance(getActivity());
         IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(StartBlankFragment.CITYSELECTED);
+        intentFilter.addAction(ChooseCityFragment.CITYSELECTED);
         broadcastManager.registerReceiver(receiver,intentFilter);
     }
 

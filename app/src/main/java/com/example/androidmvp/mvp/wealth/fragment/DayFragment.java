@@ -81,6 +81,7 @@ public class DayFragment extends BaseFragment implements BaseWealthView {
 //            Log.d(TAG, "initData: " + tag);
 //        }
         presenter = new WealthPresenter(this);
+        country = new Country(1,"尖草坪区","101100106",85);
     }
 
     @Override
@@ -105,11 +106,12 @@ public class DayFragment extends BaseFragment implements BaseWealthView {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(AutoUpdateService.UPDATEACTION);
         broadcastManager.registerReceiver(receiver, intentFilter);
-
-
         background = rootView.findViewById(R.id.day_layout);
         preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
         editor = preferences.edit();
+
+        Drawable bk = getContext().getResources().getDrawable(R.drawable.qing);
+        background.setBackground(bk);
 
         presenter = new WealthPresenter(this);
         title = rootView.findViewById(R.id.lock_day_city);
@@ -125,9 +127,6 @@ public class DayFragment extends BaseFragment implements BaseWealthView {
         windSpeed = rootView.findViewById(R.id.lock_wind_speed);
         temperatureHigh = rootView.findViewById(R.id.lock_temperature_info_high);
         refreshLayout = rootView.findViewById(R.id.day_swiperefresh);
-
-        Drawable bk = getContext().getResources().getDrawable(R.mipmap.lock_xue);
-        background.setBackground(bk);
 
         firstPeom.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,6 +178,13 @@ public class DayFragment extends BaseFragment implements BaseWealthView {
 //        presenter.loadData(country);
         presenter.loadRealData(country);
         presenter.loadPeom();
+
+        Drawable bk;
+        if(wealth.getText().toString().endsWith("雪"))
+            bk = getContext().getResources().getDrawable(R.mipmap.lock_xue);
+        else
+            bk = getContext().getResources().getDrawable(R.drawable.qing);
+        background.setBackground(bk);
 
     }
 

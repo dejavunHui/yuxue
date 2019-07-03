@@ -5,10 +5,56 @@
     android:layout_height="match_parent"
     tools:context=".mvp.find.fragment.FindFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/find_page_swipe"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="dasdsdasd" />
+        android:background="@mipmap/zhuce"
+        >
+        <android.support.v4.widget.NestedScrollView
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+
+            <TextView
+                android:id="@+id/find_page_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="sdjakdjakdj"
+                android:textSize="40dp" />
+
+            <TextView
+                android:id="@+id/find_page_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/find_page_title"
+                android:layout_alignParentRight="true"
+                android:padding="10dp"
+                android:text="yyyyy"
+                android:textSize="25dp" />
+
+
+
+                <TextView
+                    android:id="@+id/find_page_content"
+                    android:layout_below="@id/find_page_author"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="dsafssssssssssssssssssdadsad"
+                    android:textSize="30dp" />
+
+
+
+
+        </RelativeLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </FrameLayout>

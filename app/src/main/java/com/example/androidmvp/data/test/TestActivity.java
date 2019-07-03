@@ -7,6 +7,7 @@ import android.util.Log;
 import com.example.androidmvp.R;
 import com.example.androidmvp.common.Constant;
 import com.example.androidmvp.data.httpdata.HttpData;
+import com.example.androidmvp.mvp.entity.FindPageResult;
 import com.example.androidmvp.mvp.entity.db.ShowPage;
 import com.example.androidmvp.mvp.entity.show.RemarkResult;
 import com.example.androidmvp.mvp.entity.show.ShowPageResult;
@@ -21,6 +22,7 @@ import com.example.androidmvp.mvp.entity.localdb.Province;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class TestActivity extends AppCompatActivity {
@@ -65,10 +67,44 @@ public class TestActivity extends AppCompatActivity {
 //        login();
 //        getWeatherInfo("CN101240409");
 //        testpeom();
-        testW("101240409");
+//        testW("101240409");
 //        postShowpage("消耗风吃屎","dejavun","消耗分是大傻逼爱吃屎");
 //        postRemark("dejavun","dejavun","1","你说的没错");
 //        getShowpages();
+//        getDayPage();
+    }
+
+    void getDayPage(){
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int moth = calendar.get(Calendar.MONTH) + 1;
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        String date = ""+year;
+        date = date + (moth >= 10 ? moth:"0"+moth);
+        date = date + (day >= 10 ? date:"0"+day);
+        HttpData.getInstance().getDayPage(new Observer<FindPageResult>() {
+
+
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(FindPageResult value) {
+                Log.d(TAG, "onNext: "+value.data.content);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        },date);
     }
 
     void getShowpages(){
