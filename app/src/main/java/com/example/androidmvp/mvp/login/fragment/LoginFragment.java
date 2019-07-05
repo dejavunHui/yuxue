@@ -21,6 +21,7 @@ import com.example.androidmvp.mvp.entity.UserResult;
 import com.example.androidmvp.mvp.login.activity.DoActivity;
 import com.example.androidmvp.mvp.login.presenter.LoginPresenter;
 import com.example.androidmvp.mvp.login.view.BaseLoginView;
+import com.example.androidmvp.widget.CustomVideoView;
 
 
 /**
@@ -38,7 +39,6 @@ public class LoginFragment extends BaseFragment implements BaseLoginView {
     private TextView toRegister;
     private DoActivity activity;
     private LoginPresenter presenter;
-
     public UserResult user;
 
     public void setActivity(DoActivity activity) {
@@ -71,6 +71,7 @@ public class LoginFragment extends BaseFragment implements BaseLoginView {
         login = rootView.findViewById(R.id.login);
         remember = rootView.findViewById(R.id.remeberpassword);
         toRegister = rootView.findViewById(R.id.login_noid_tv);
+
         login.setOnClickListener(new ClickListener());
         String name = activity.preferences.getString("username","error");
         if(name != "error"){
@@ -143,5 +144,11 @@ public class LoginFragment extends BaseFragment implements BaseLoginView {
     @Override
     public void setUser(UserResult user) {
         this.user = user;
+    }
+
+
+
+    public void initBackViewView(){
+
     }
 }

@@ -50,7 +50,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     /**
      * 加载页面layout
      */
-    protected abstract void loadViewLayout();
+    protected abstract void loadViewLayout() ;
 
     /**
      * 加载页面元素

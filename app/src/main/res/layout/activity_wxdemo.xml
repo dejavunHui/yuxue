@@ -32,6 +32,16 @@
             android:textSize="30dp"
 
             />
+        <CheckBox
+            android:id="@+id/proir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="通知发送"
+            android:textSize="25dp"
+            android:layout_toLeftOf="@id/true_send"
+            android:layout_alignTop="@id/true_send"
+            android:layout_alignBottom="@id/true_send"
+            />
 
     </RelativeLayout>
 

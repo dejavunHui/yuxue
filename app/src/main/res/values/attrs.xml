@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+    <declare-styleable name="MNCalendar">
+        &lt;!&ndash;日历是否显示阴历 : true-显示,false-不显示 (默认显示)&ndash;&gt;
+        <attr name="mnCalendar_showLunar" format="boolean" />
+        &lt;!&ndash;日历是否显示星期一栏 : true-显示,false-不显示 (默认显示) &ndash;&gt;
+        <attr name="mnCalendar_showWeek" format="boolean" />
+        &lt;!&ndash;日历星期的颜色值&ndash;&gt;
+        <attr name="mnCalendar_colorWeek" format="color" />
+        &lt;!&ndash;日历Item的阳历的颜色值&ndash;&gt;
+        <attr name="mnCalendar_colorSolar" format="color" />
+        &lt;!&ndash;日历Item的阴历的颜色值&ndash;&gt;
+        <attr name="mnCalendar_colorLunar" format="color" />
+        &lt;!&ndash;日历今天圆形背景&ndash;&gt;
+        <attr name="mnCalendar_colorTodayBg" format="color" />
+        &lt;!&ndash;日历不是当前月份的阳历的颜色&ndash;&gt;
+        <attr name="mnCalendar_colorOtherMonth" format="color" />
+        &lt;!&ndash;日历今天圆形背景上的文字的颜色&ndash;&gt;
+        <attr name="mnCalendar_colorTodayText" format="color" />
+    </declare-styleable>
+    -->
+
+    <declare-styleable name="CircleChartView">
+        <attr name="circle_width" format="dimension"/>
+        <attr name="back_circle_color" format="color"/>
+        <attr name="out_circle_color" format="color"/>
+        <attr name="center_circle_color" format="color"/>
+        <attr name="inner_circle_color" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="MaterialEditText">
+        <attr name="useFloatingLabel" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="FlowLayout">
+        <attr name="flFlow" format="boolean"/>
+        <attr name="flChildSpacing" format="enum|dimension">
+            <enum name="auto" value="-65536"/>
+        </attr>
+        <attr name="flMinChildSpacing" format="dimension"/>
+        <attr name="flChildSpacingForLastRow" format="enum|dimension">
+            <enum name="auto" value="-65536"/>
+            <enum name="align" value="-65537"/>
+        </attr>
+        <attr name="flRowSpacing" format="enum|dimension">
+            <enum name="auto" value="-65536"/>
+        </attr>
+        <attr name="flRtl" format="boolean"/>
+        <attr name="flMaxRows" format="integer"/>
+        <attr name="flRowVerticalGravity" format="enum">
+            <enum name="auto" value="-65536"/>
+            <enum name="top" value="0x30"/>
+            <enum name="center" value="0x10"/>
+            <enum name="bottom" value="0x50"/>
+        </attr>
+        <attr name="android:gravity"/>
+    </declare-styleable>
+
+    <declare-styleable name="ComponentCustomAttrs">
+        <attr name="custom_theme_color" format="color"/>
+        <attr name="custom_theme_start_color" format="color"/>
+        <attr name="custom_theme_end_color" format="color"/>
+
+        <attr name="custom_normal_background_color" format="color"/>
+        <attr name="custom_disable_background_color" format="color"/>
+
+        <attr name="custom_theme_text_color" format="color"/>
+        <attr name="custom_normal_text_color" format="color"/>
+        <attr name="custom_disable_text_color" format="color"/>
+        <attr name="custom_hint_text_color" format="color"/>
+
+        <attr name="custom_hint_background_color" format="color"/>
+        <attr name="custom_radius" format="dimension"/>
+
+    </declare-styleable>
+
+    <declare-styleable name="SegmentedControlView">
+        <attr name="segRadius" format="dimension|reference" />
+        <attr name="segOuterColor" format="color" />
+        <attr name="segItemColor" format="color" />
+        <attr name="segTextColor" format="color" />
+        <attr name="segShaderStartColor" format="color" />
+        <attr name="segShaderEndColor" format="color" />
+        <attr name="segSelectedTextColor" format="color" />
+        <attr name="segMarginLeft" format="dimension|reference"/>
+        <attr name="segMarginTop" format="dimension|reference"/>
+        <attr name="segSelectedItem" format="integer"/>
+        <attr name="segTextSize" format="dimension|reference"/>
+        <attr name="segScrollEnable" format="boolean"/>
+        <attr name="segMode">
+            <enum name="ROUND" value="0"/>
+            <enum name="CIRCLE" value="1"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="CustomCircleLoadingView">
+        <attr name="circleLoadingView_color" format="color"/>
+        <attr name="circleLoadingView_thickness" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="CircleProgressBar">
+        <attr name="circleProgressBarTextColor" format="color"/>
+        <attr name="circleProgressBarProgressColor" format="color"/>
+        <attr name="circleProgressBarThickness" format="dimension"/>
+        <attr name="circleProgressBarTextSize" format="dimension"/>
+        <attr name="circleProgressBarShowText" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="HorizontalLoadingView">
+        <attr name="horizontalLoadingViewLineWidth" format="dimension"/>
+        <attr name="horizontalLoadingViewBackgroundColor" format="color"/>
+        <attr name="horizontalLoadingViewSliderColor" format="color"/>
+        <attr name="horizontalLoadingViewSliderWidth" format="dimension"/>
+    </declare-styleable>
+
+</resources>

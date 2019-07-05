@@ -203,13 +203,14 @@ public class HttpData extends RetrofitUtil {
 
     /***********************************show*************************************************/
 
-    public void upShowPage(Observer<ShowPageResult> observer, String title, String autor, String content) {
+    public void upShowPage(Observer<ShowPageResult> observer, String title, String autor, String content,int proir) {
 
         MultipartBody.Builder builder = new MultipartBody.Builder();
         //添加文本
         builder.addFormDataPart("title", title);
         builder.addFormDataPart("content", content);
         builder.addFormDataPart("autor", autor);
+        builder.addFormDataPart("proir",String.valueOf(proir));
 
         builder.setType(MultipartBody.FORM);
         MultipartBody multipartBody = builder.build();
@@ -278,6 +279,7 @@ public class HttpData extends RetrofitUtil {
                     page.setContent(showpageBean.getContent());
                     page.setTitle(showpageBean.getTitle());
                     page.setTimestamp(showpageBean.getTime());
+                    page.setProir(showpageBean.getProir());
                     String showpageid = String.valueOf(showpageBean.getId());
                     for (ImageResult imageBean : o3) {
                         if (imageBean.getShowpage() != null && imageBean.getShowpage().equals(showpageid)) {
@@ -335,6 +337,7 @@ public class HttpData extends RetrofitUtil {
                     page.setContent(showpageBean.getContent());
                     page.setTitle(showpageBean.getTitle());
                     page.setTimestamp(showpageBean.getTime());
+                    page.setProir(showpageBean.getProir());
                     String showpageid = String.valueOf(showpageBean.getId());
                     for (ImageResult imageBean : o3) {
                         if (imageBean.getShowpage() != null && imageBean.getShowpage().equals(showpageid)) {

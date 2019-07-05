@@ -14,8 +14,18 @@ public class ShowPage {
     String content;
     String user;
     String timestamp;
+    int proir;
     List<Remark> remarks;
     List<String> images;
+
+
+    public int getProir() {
+        return proir;
+    }
+
+    public void setProir(int proir) {
+        this.proir = proir;
+    }
 
     public int getId() {
         return id;

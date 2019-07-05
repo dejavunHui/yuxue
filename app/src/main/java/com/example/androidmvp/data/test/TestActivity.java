@@ -72,7 +72,13 @@ public class TestActivity extends AppCompatActivity {
 //        postRemark("dejavun","dejavun","1","你说的没错");
 //        getShowpages();
 //        getDayPage();
+
+
     }
+
+
+
+
 
     void getDayPage(){
         Calendar calendar = Calendar.getInstance();
@@ -179,7 +185,7 @@ public class TestActivity extends AppCompatActivity {
             public void onComplete() {
 
             }
-        }, title, autor, content);
+        }, title, autor, content,0);
     }
 
     void testW(String code){

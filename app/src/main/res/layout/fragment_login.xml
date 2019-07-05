@@ -9,7 +9,18 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/login_bk">
+        android:background="@null">
+
+        <TextView
+            android:id="@+id/login_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="220sp"
+            android:text="欲雪"
+            android:textSize="35dp"
+            android:textColor="@color/cpb_grey"
+            android:layout_centerHorizontal="true"
+            />
 
         <EditText
             android:id="@+id/username"
@@ -21,7 +32,8 @@
             android:textColorHint="#ffffff"
             android:textSize="20sp"
             android:background="@drawable/edit_bound_bg"
-            android:layout_marginTop="240sp"
+            android:layout_below="@id/login_title"
+            android:layout_marginTop="50dp"
             android:layout_marginLeft="70dp"
             android:layout_marginRight="70dp"
             android:minHeight="50dp"

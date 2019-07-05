@@ -10,8 +10,17 @@ public class ShowPageResult{
         private String content;
         private String title;
         private String time;
+        private int proir;
 
-        public int getId() {
+    public int getProir() {
+        return proir;
+    }
+
+    public void setProir(int proir) {
+        this.proir = proir;
+    }
+
+    public int getId() {
             return id;
         }
 

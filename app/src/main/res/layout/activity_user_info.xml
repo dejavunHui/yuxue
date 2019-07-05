@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".mvp.residemenu.activity.UserInfoActivity">
     <RelativeLayout
+        android:background="@mipmap/info"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

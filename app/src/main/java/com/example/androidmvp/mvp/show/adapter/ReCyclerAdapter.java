@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -64,6 +65,11 @@ public class ReCyclerAdapter extends RecyclerView.Adapter<ReCyclerAdapter.MyView
         loadUserIcon(holder.circleImageView, showPages.get(position).getUser());
         holder.userName.setText(showPages.get(position).getUser());
         holder.showInfo.setText(showPages.get(position).getContent());
+        if(showPages.get(position).getProir() > 0){
+            holder.backgroulayout.setBackground(context.getResources().getDrawable(R.mipmap.back));
+        }else{
+            holder.backgroulayout.setBackground(context.getResources().getDrawable(R.drawable.timg));
+        }
         holder.nineGridImageView.setImagesData(showPages.get(position).getImages());
         if(showPages.get(position).getImages().size() == 0){
             holder.nineGridImageView.setVisibility(View.GONE);
@@ -138,7 +144,7 @@ public class ReCyclerAdapter extends RecyclerView.Adapter<ReCyclerAdapter.MyView
 
             @Override
             public void onNext(UserResult value) {
-                Glide.with(context).load(Constant.Urls.IMAGEURLROOT + value.getIcon()).into(view);
+                Glide.with(context).load(Constant.Urls.IMAGEURLROOT + value.getIcon()).error(R.drawable.ic_default_image).into(view);
             }
 
             @Override
@@ -185,6 +191,8 @@ public class ReCyclerAdapter extends RecyclerView.Adapter<ReCyclerAdapter.MyView
         LayoutInflater inflater;
         LinearLayout layout;
 
+        RelativeLayout backgroulayout;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             circleImageView = itemView.findViewById(R.id.show_user_image);
@@ -197,6 +205,7 @@ public class ReCyclerAdapter extends RecyclerView.Adapter<ReCyclerAdapter.MyView
             inflater = LayoutInflater.from(context);
             layout = itemView.findViewById(R.id.remarkLayout);
             pinglun = itemView.findViewById(R.id.edit_remark);
+            backgroulayout = itemView.findViewById(R.id.showitem);
             final ArrayList<ThumbViewInfo> mThumbViewInfoList = new ArrayList<>();
             viewAdapter = new NineGridImageViewAdapter<String>() {
                 @Override

@@ -20,7 +20,7 @@ public class UpShowPresenter {
         model = new ShowModel();
     }
 
-    public void upShowpage(String autor, String title, String content) {
+    public void upShowpage(String autor, String title, String content,int p) {
         model.upShowpage(new OnLoadDataListener<ShowPageResult>() {
             @Override
             public void onSuccess(ShowPageResult data) {
@@ -31,7 +31,7 @@ public class UpShowPresenter {
             public void onError(Throwable e) {
                 view.showMessage(e.getMessage());
             }
-        }, title, autor, content);
+        }, title, autor, content,p);
     }
 
     public void upImage(String showpage, String remark, List<ImageItem> images) {

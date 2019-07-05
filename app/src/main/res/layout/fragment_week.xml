@@ -2,102 +2,150 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:id="@+id/lock_week_wealth"
-    >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/xiala"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <RelativeLayout
-        android:background="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/lock_week_day_city"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="太原"
-            android:textSize="30sp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            />
 
-        <include layout="@layout/fragment_time_fagment"
-            android:id="@+id/time_layout"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:layout_below="@id/lock_week_day_city"
-            android:layout_marginTop="5dp"
-            />
-
-
-        <View
-            android:id="@+id/spin_line1"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#101025"
-            android:minHeight="1dp"
-            android:layout_below="@id/time_layout"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginTop="40dp"
-            />
-
-        <TextView
-            android:id="@+id/lock_week_dongzhu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="洞烛先机"
-            android:textSize="20sp"
-            android:layout_above="@id/spin_line1"
-            android:layout_alignLeft="@id/spin_line1"
-            android:layout_alignBottom="@id/spin_line1"
-            />
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/week_wealth"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/spin_line1"
-            android:layout_alignLeft="@id/spin_line1"
-            android:layout_alignRight="@id/spin_line1"
-            android:layout_above="@id/lock_week_peom_1"
-            android:layout_marginBottom="10dp"
-            >
-
-        </android.support.v7.widget.RecyclerView>
-
-        <TextView
-            android:id="@+id/lock_week_peom_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="江湖夜雨十年灯"
-            android:textSize="30sp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignLeft="@id/spin_line1"
-            android:layout_alignRight="@id/spin_line1"
-            android:gravity="center_horizontal"
-            android:layout_marginBottom="25dp"
-            />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@mipmap/wbck">
 
 
 
-        <TextView
-            android:id="@+id/lock_week_peom_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="桃李春风一杯酒"
-            android:textSize="30sp"
-            android:layout_above="@id/lock_week_peom_2"
-            android:layout_alignLeft="@id/lock_week_peom_2"
-            android:layout_alignRight="@id/lock_week_peom_2"
-            android:gravity="center_horizontal"
-            />
+                <TextView
+                    android:id="@+id/lock_week_day_city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:text="太原"
+                    android:textSize="30sp" />
+
+                <include
+                    android:id="@+id/time_layout"
+                    layout="@layout/fragment_time_fagment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/lock_week_day_city"
+                    android:layout_marginTop="5dp" />
 
 
-    </RelativeLayout>
+                <View
+                    android:id="@+id/spin_line1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/time_layout"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginRight="40dp"
+                    android:background="#101025"
+                    android:minHeight="1dp" />
+
+                <TextView
+                    android:id="@+id/lock_week_dongzhu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/spin_line1"
+                    android:layout_alignLeft="@id/spin_line1"
+                    android:layout_alignBottom="@id/spin_line1"
+                    android:text="洞烛先机"
+                    android:textSize="20sp" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/week_wealth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:layout_below="@id/spin_line1"
+                    android:layout_alignLeft="@id/spin_line1"
+                    android:layout_alignRight="@id/spin_line1"
+                    android:layout_above="@id/lock_week_peom_1"
+                    android:visibility="invisible"
+                    android:layout_marginBottom="10dp">
+
+                </android.support.v7.widget.RecyclerView>
+
+
+                    <com.example.androidmvp.widget.SegmentedControlView
+                        android:id="@+id/select"
+                        android:layout_width="300dp"
+                        android:layout_height="40dp"
+                        app:segMarginLeft="0dp"
+                        app:segMarginTop="0dp"
+                        app:segMode="CIRCLE"
+                        app:segSelectedItem="0"
+                        app:segTextSize="14sp"
+                        android:layout_below="@id/spin_line1"
+                        android:layout_centerHorizontal="true"
+                        />
+
+                    <com.example.androidmvp.widget.WeekWeatherView
+                        android:id="@+id/chart_week"
+                        android:layout_marginTop="50dp"
+                        android:layout_below="@id/spin_line1"
+                        android:layout_above="@id/lock_week_peom_1"
+                        android:layout_alignLeft="@id/spin_line1"
+                        android:layout_alignRight="@id/spin_line1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="invisible"
+                        >
+                    </com.example.androidmvp.widget.WeekWeatherView>
+                    
+                    <com.example.androidmvp.widget.DayWeatherView
+                        android:id="@+id/day_weather"
+                        android:layout_marginTop="50dp"
+                        android:layout_below="@id/spin_line1"
+                        android:layout_above="@id/lock_week_peom_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        ></com.example.androidmvp.widget.DayWeatherView>
+
+
+
+                <TextView
+                    android:id="@+id/lock_week_peom_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/spin_line1"
+                    android:layout_alignRight="@id/spin_line1"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="25dp"
+                    android:gravity="center_horizontal"
+                    android:text="江湖夜雨十年灯"
+                    android:textSize="30sp" />
+
+
+                <TextView
+                    android:id="@+id/lock_week_peom_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/lock_week_peom_2"
+                    android:layout_alignLeft="@id/lock_week_peom_2"
+                    android:layout_alignRight="@id/lock_week_peom_2"
+                    android:gravity="center_horizontal"
+                    android:text="桃李春风一杯酒"
+                    android:textSize="30sp" />
+
+
+
+
+            </RelativeLayout>
+
+
 
     </android.support.v4.widget.SwipeRefreshLayout>
+    </RelativeLayout>
+
 </FrameLayout>

@@ -8,10 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.androidmvp.R;
+import com.example.androidmvp.mvp.MainActivity;
 import com.example.androidmvp.mvp.entity.UserResult;
 import com.example.androidmvp.mvp.show.adapter.ImagePickerAdapter;
 import com.example.androidmvp.mvp.show.presenter.UpShowPresenter;
@@ -23,6 +25,9 @@ import com.lzy.imagepicker.bean.ImageItem;
 import com.lzy.imagepicker.ui.ImageGridActivity;
 import com.lzy.imagepicker.ui.ImagePreviewDelActivity;
 import com.lzy.imagepicker.view.CropImageView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +50,8 @@ public class CreateShowPageActivity extends AppCompatActivity implements ImagePi
     private EditText content;
     private UpShowPresenter presenter;
     private UserResult user;
+    private CheckBox proir;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,10 +68,11 @@ public class CreateShowPageActivity extends AppCompatActivity implements ImagePi
         ok = findViewById(R.id.true_send);
         cancel = findViewById(R.id.cancel_send);
         content = findViewById(R.id.showpage_content);
+        proir = findViewById(R.id.proir);
         presenter = new UpShowPresenter(this);
         Bundle bundle = getIntent().getExtras();
         user = (UserResult) bundle.getSerializable("user");
-        RemarkUoClickListener  listener = new RemarkUoClickListener();
+        RemarkUoClickListener listener = new RemarkUoClickListener();
         ok.setOnClickListener(listener);
         cancel.setOnClickListener(listener);
     }
@@ -186,11 +194,10 @@ public class CreateShowPageActivity extends AppCompatActivity implements ImagePi
     }
 
 
-
-    class RemarkUoClickListener implements View.OnClickListener{
+    class RemarkUoClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            switch (v.getId()){
+            switch (v.getId()) {
                 case R.id.true_send:
                     //发表说说
                     upShow();
@@ -205,21 +212,35 @@ public class CreateShowPageActivity extends AppCompatActivity implements ImagePi
             }
         }
 
-        public void upShow(){
+        public void upShow() {
             String autor = user.getUsername();
             String contentStr = content.getText().toString();
-            String title = contentStr.substring(0,contentStr.length()/5);
-            presenter.upShowpage(autor,title,contentStr);
+            String title = contentStr.substring(0, contentStr.length() / 3);
+            int p = proir.isChecked() ? 1 :0;
+            presenter.upShowpage(autor, title, contentStr,p);
+
+            JSONObject object = new JSONObject();
+            try {
+                object.put("type", 1);
+                object.put("user", autor);
+                if(MainActivity.client!=null && MainActivity.client.isOpen())
+                    MainActivity.jWebSClientService.sendMsg(object.toString());
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
         }
     }
 
     @Override
     public void showMessage(String message) {
-        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void upImage(String showpage, String remark) {
-        presenter.upImage(showpage,remark,images);
+        presenter.upImage(showpage, remark, images);
     }
 }

@@ -1,22 +1,26 @@
 package com.example.androidmvp.mvp.show.fragment;
 
 
-import android.app.Dialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,12 +39,15 @@ import com.example.androidmvp.mvp.show.activity.CreateShowPageActivity;
 import com.example.androidmvp.mvp.show.adapter.ReCyclerAdapter;
 import com.example.androidmvp.mvp.show.presenter.ShowPresenter;
 import com.example.androidmvp.mvp.show.view.BaseShowView;
+import com.example.androidmvp.mvp.wealth.service.AutoUpdateService;
 import com.example.androidmvp.widget.CircleImageView;
 import com.example.androidmvp.widget.MyRemarkView;
 import com.jaeger.ninegridimageview.NineGridImageView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.content.Context.NOTIFICATION_SERVICE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,6 +63,7 @@ public class ShowFragment extends BaseFragment implements BaseShowView {
     private ShowPresenter presenter;
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
+    private TextView notify;
 
     UserResult user;
     //    @BindView(R.id.showimages)
@@ -71,6 +79,14 @@ public class ShowFragment extends BaseFragment implements BaseShowView {
     TextView headerName;
     Button edit;
 
+    private LocalBroadcastManager broadcastManager;
+    private BroadcastReceiver receiver;
+
+    //增加websocket
+
+
+
+    /******************************************************/
 
     public static ShowFragment getInstance(String tag) {
         if (instance == null) {
@@ -100,6 +116,27 @@ public class ShowFragment extends BaseFragment implements BaseShowView {
     @Override
     protected void initListener() {
 
+//        //注册广播接收
+//        receiver = new BroadcastReceiver() {
+//            @Override
+//            public void onReceive(Context context, Intent intent) {
+//
+//                    int type = intent.getIntExtra("type",-1);
+//                    if(type == 1){
+//                        updateNotify(intent.getStringExtra("user"));
+//                    }
+//                    else  if(type == 2){
+//                        notifyC(intent.getStringExtra("title"),intent.getStringExtra("content"));
+//                        Log.e(TAG, "onReceive: "+ intent.getStringExtra("title"));
+//                    }
+//            }
+//        };
+//        broadcastManager = LocalBroadcastManager.getInstance(getActivity());
+//        IntentFilter intentFilter = new IntentFilter();
+//        intentFilter.addAction(MainActivity.WEBSOCKETNOTIFY);
+//        broadcastManager.registerReceiver(receiver, intentFilter);
+
+
         preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
         editor = preferences.edit();
 
@@ -109,6 +146,8 @@ public class ShowFragment extends BaseFragment implements BaseShowView {
         headerIcon = rootView.findViewById(R.id.show_head_user_image);
         headerName = rootView.findViewById(R.id.show_head_user_name);
         edit = rootView.findViewById(R.id.fashuoshuo);
+
+        notify = rootView.findViewById(R.id.notifytv);
         headerName.setOnClickListener(new HeaderItemClickListener());
         headerIcon.setOnClickListener(new HeaderItemClickListener());
         edit.setOnClickListener(new HeaderItemClickListener());
@@ -134,11 +173,14 @@ public class ShowFragment extends BaseFragment implements BaseShowView {
                 showMessage("更新成功");
             }
         });
+
+
     }
 
     @Override
     public void loadData() {
         loadHeader();
+        notify.setVisibility(View.GONE);
         presenter.loadShowPages();
     }
 
@@ -164,7 +206,7 @@ public class ShowFragment extends BaseFragment implements BaseShowView {
         user.setPassword(preferences.getString("c_password", ""));
 
         headerName.setText(user.getUsername());
-        Glide.with(headerIcon.getContext()).load(Constant.Urls.IMAGEURLROOT + user.getIcon()).into(headerIcon);
+        Glide.with(headerIcon.getContext()).load(Constant.Urls.IMAGEURLROOT + user.getIcon()).error(R.drawable.ic_default_image).into(headerIcon);
     }
 
     @Override
@@ -177,6 +219,19 @@ public class ShowFragment extends BaseFragment implements BaseShowView {
     }
 
 
+    public void updateNotify(String user){
+        notify.setText(user+"“更新了动态");
+        notify.setVisibility(View.VISIBLE);
+    }
+
+    public void notifyC(String title,String content){
+        NotificationManager manager = (NotificationManager) getActivity().getSystemService(NOTIFICATION_SERVICE);
+
+        Notification notification = new NotificationCompat.Builder(getContext()).setContentTitle(title)
+                .setContentText(content).setWhen(System.currentTimeMillis()).setSmallIcon(R.mipmap.ic_launcher)
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.laucher)).build();
+        manager.notify(1, notification);
+    }
 
     class RemarkItemClickListener implements MyRemarkView.ClickListener {
         @Override
@@ -283,5 +338,6 @@ public class ShowFragment extends BaseFragment implements BaseShowView {
             startActivity(intent);
         }
     }
+
 
 }

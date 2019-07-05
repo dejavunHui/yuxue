@@ -145,7 +145,7 @@ public class UserShowActivity extends BaseActivity implements BaseUserShowView {
             }
         }
 
-        public void deleteShowpage(final ShowPage page){
+        public void deleteShowpage(final ShowPage page) {
             List<String> names = new ArrayList<>();
             names.add("删除");
             names.add("取消");

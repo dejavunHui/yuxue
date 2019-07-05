@@ -32,7 +32,6 @@ public class MyApplication extends LitePalApplication {
         instance = this;
     }
 
-
     /**
      * 获取实例
      *
@@ -95,8 +94,8 @@ public class MyApplication extends LitePalApplication {
      */
 
     public void exit() {
-        for (Activity activity :activities){
-            if(activity != null){
+        for (Activity activity : activities) {
+            if (activity != null) {
                 activity.finish();
             }
         }

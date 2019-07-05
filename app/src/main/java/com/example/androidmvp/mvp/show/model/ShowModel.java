@@ -86,7 +86,7 @@ public class ShowModel {
         }, showPage, remark, path);
     }
 
-    public void upShowpage(final OnLoadDataListener<ShowPageResult> listener, String title, String autor, String content) {
+    public void upShowpage(final OnLoadDataListener<ShowPageResult> listener, String title, String autor, String content,int proir) {
         HttpData.getInstance().upShowPage(new Observer<ShowPageResult>() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -107,7 +107,7 @@ public class ShowModel {
             public void onComplete() {
 
             }
-        }, title, autor, content);
+        }, title, autor, content,proir);
     }
 
     public void upRemark(final OnLoadDataListener<RemarkResult> listener,String from,String to,String showpage,String content){

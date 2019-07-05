@@ -17,6 +17,8 @@ public class Constant {
         public static final String PEOM = "https://v2.jinrishici.com/";
         public static final String DAYPAGE = "https://interface.meiriyiwen.com/article/";
 
+        public static final String WEBSOCKET = "ws://39.106.67.218:5678/";//websocket地址
+
     }
 
     public static final class Key {
